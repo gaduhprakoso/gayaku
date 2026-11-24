@@ -97,19 +97,23 @@ class AiStylistService {
       occasion = 'Smart-Casual';
       if (lower.contains('kondangan malam')) {
         rawOccasion = 'kondangan malam';
-      } else if (lower.contains('smart-casual') || lower.contains('smart casual')) {
+      } else if (lower.contains('smart-casual') ||
+          lower.contains('smart casual')) {
         rawOccasion = 'tampilan smart-casual';
       } else {
-        rawOccasion = _matchedKeyword(lower, [
-          'wisuda',
-          'kondangan',
-          'lamaran',
-          'resepsi',
-          'pesta',
-          'wedding',
-        ]) ?? 'wisuda';
+        rawOccasion =
+            _matchedKeyword(lower, [
+              'wisuda',
+              'kondangan',
+              'lamaran',
+              'resepsi',
+              'pesta',
+              'wedding',
+            ]) ??
+            'wisuda';
       }
-      targetFormality = (lower.contains('smart') && !lower.contains('kondangan')) ? 3 : 4;
+      targetFormality =
+          (lower.contains('smart') && !lower.contains('kondangan')) ? 3 : 4;
     }
     // Formal
     else if (_containsAny(lower, [
@@ -133,14 +137,16 @@ class AiStylistService {
       if (lower.contains('sidang') && lower.contains('interview')) {
         rawOccasion = 'sidang & interview';
       } else {
-        rawOccasion = _matchedKeyword(lower, [
-          'interview',
-          'sidang',
-          'kantor',
-          'meeting',
-          'presentasi',
-          'kerja',
-        ]) ?? 'kantor';
+        rawOccasion =
+            _matchedKeyword(lower, [
+              'interview',
+              'sidang',
+              'kantor',
+              'meeting',
+              'presentasi',
+              'kerja',
+            ]) ??
+            'kantor';
       }
       targetFormality = 5;
     }
@@ -164,12 +170,13 @@ class AiStylistService {
       rawOccasion = lower.contains('gym')
           ? 'olahraga / gym'
           : (_matchedKeyword(lower, [
-              'olahraga',
-              'lari',
-              'gym',
-              'workout',
-              'jogging',
-            ]) ?? 'olahraga');
+                  'olahraga',
+                  'lari',
+                  'gym',
+                  'workout',
+                  'jogging',
+                ]) ??
+                'olahraga');
       targetFormality = 1;
     }
     // Kasual (Default / Casual)
@@ -200,14 +207,16 @@ class AiStylistService {
       if (lower.contains('kafe') || lower.contains('cafe')) {
         rawOccasion = 'nongkrong di kafe';
       } else {
-        rawOccasion = _matchedKeyword(lower, [
-          'ngampus',
-          'kuliah',
-          'nongkrong',
-          'santai',
-          'kencan',
-          'jalan',
-        ]) ?? 'kasual';
+        rawOccasion =
+            _matchedKeyword(lower, [
+              'ngampus',
+              'kuliah',
+              'nongkrong',
+              'santai',
+              'kencan',
+              'jalan',
+            ]) ??
+            'kasual';
       }
       targetFormality = 2;
     } else {
@@ -217,7 +226,8 @@ class AiStylistService {
       targetFormality = 3;
     }
 
-    final preferNewest = lower.contains('terbaru') || lower.contains('terbaruku');
+    final preferNewest =
+        lower.contains('terbaru') || lower.contains('terbaruku');
 
     // 2. Detect Preferred Colors
     final preferredColors = <String>[];
@@ -227,25 +237,40 @@ class AiStylistService {
     if (lower.contains('putih') || lower.contains('white')) {
       preferredColors.add('Putih');
     }
-    if (lower.contains('navy') || lower.contains('biru') || lower.contains('blue')) {
+    if (lower.contains('navy') ||
+        lower.contains('biru') ||
+        lower.contains('blue')) {
       preferredColors.add('Biru');
     }
-    if (lower.contains('merah') || lower.contains('red') || lower.contains('maroon')) {
+    if (lower.contains('merah') ||
+        lower.contains('red') ||
+        lower.contains('maroon')) {
       preferredColors.add('Merah');
     }
     if (lower.contains('pink') || lower.contains('merah muda')) {
       preferredColors.add('Pink');
     }
-    if (lower.contains('hijau') || lower.contains('green') || lower.contains('sage') || lower.contains('olive')) {
+    if (lower.contains('hijau') ||
+        lower.contains('green') ||
+        lower.contains('sage') ||
+        lower.contains('olive')) {
       preferredColors.add('Hijau');
     }
-    if (lower.contains('kuning') || lower.contains('yellow') || lower.contains('mustard')) {
+    if (lower.contains('kuning') ||
+        lower.contains('yellow') ||
+        lower.contains('mustard')) {
       preferredColors.add('Kuning');
     }
-    if (lower.contains('abu') || lower.contains('grey') || lower.contains('gray')) {
+    if (lower.contains('abu') ||
+        lower.contains('grey') ||
+        lower.contains('gray')) {
       preferredColors.add('Abu-abu');
     }
-    if (lower.contains('cokelat') || lower.contains('brown') || lower.contains('krem') || lower.contains('beige') || lower.contains('tan')) {
+    if (lower.contains('cokelat') ||
+        lower.contains('brown') ||
+        lower.contains('krem') ||
+        lower.contains('beige') ||
+        lower.contains('tan')) {
       preferredColors.add('Cokelat');
     }
 
@@ -260,19 +285,66 @@ class AiStylistService {
 
     // 3. Detect Preferred Categories
     final preferredCategories = <String>[];
-    if (_containsAny(lower, ['kemeja', 'kaos', 't-shirt', 'shirt', 'blouse', 'polo', 'baju', 'atasan'])) {
+    if (_containsAny(lower, [
+      'kemeja',
+      'kaos',
+      't-shirt',
+      'shirt',
+      'blouse',
+      'polo',
+      'baju',
+      'atasan',
+    ])) {
       preferredCategories.add('Tops');
     }
-    if (_containsAny(lower, ['celana', 'jeans', 'chinos', 'rok', 'kulot', 'trousers', 'pants', 'skirt', 'bawahan'])) {
+    if (_containsAny(lower, [
+      'celana',
+      'jeans',
+      'chinos',
+      'rok',
+      'kulot',
+      'trousers',
+      'pants',
+      'skirt',
+      'bawahan',
+    ])) {
       preferredCategories.add('Bottoms');
     }
-    if (_containsAny(lower, ['jaket', 'blazer', 'cardigan', 'hoodie', 'outer', 'jas', 'jacket', 'coat'])) {
+    if (_containsAny(lower, [
+      'jaket',
+      'blazer',
+      'cardigan',
+      'hoodie',
+      'outer',
+      'jas',
+      'jacket',
+      'coat',
+    ])) {
       preferredCategories.add('Outerwear');
     }
-    if (_containsAny(lower, ['sepatu', 'sneakers', 'loafers', 'heels', 'boots', 'sandals', 'pantofel', 'shoes', 'sepatu santai'])) {
+    if (_containsAny(lower, [
+      'sepatu',
+      'sneakers',
+      'loafers',
+      'heels',
+      'boots',
+      'sandals',
+      'pantofel',
+      'shoes',
+      'sepatu santai',
+    ])) {
       preferredCategories.add('Footwear');
     }
-    if (_containsAny(lower, ['topi', 'dasi', 'tas', 'bag', 'belt', 'ikat pinggang', 'jam', 'watch'])) {
+    if (_containsAny(lower, [
+      'topi',
+      'dasi',
+      'tas',
+      'bag',
+      'belt',
+      'ikat pinggang',
+      'jam',
+      'watch',
+    ])) {
       preferredCategories.add('Accessories');
     }
 
@@ -300,7 +372,9 @@ class AiStylistService {
     final bottoms = items.where((i) => i.category == 'Bottoms').toList();
     final outerwear = items.where((i) => i.category == 'Outerwear').toList();
     final footwear = items.where((i) => i.category == 'Footwear').toList();
-    final accessories = items.where((i) => i.category == 'Accessories').toList();
+    final accessories = items
+        .where((i) => i.category == 'Accessories')
+        .toList();
 
     // If wardrobe doesn't have sufficient items for a full outfit, provide fallback advice
     if (tops.isEmpty || bottoms.isEmpty) {
@@ -320,13 +394,15 @@ class AiStylistService {
         );
 
         // Calculate combined score
-        double score = (pairScore.color * 0.40) +
+        double score =
+            (pairScore.color * 0.40) +
             (pairScore.formality * 0.35) +
             (pairScore.occasion * 0.25);
 
         // Bonus if matches target formality
         final topFormalityGap = (top.formality - intent.targetFormality).abs();
-        final bottomFormalityGap = (bottom.formality - intent.targetFormality).abs();
+        final bottomFormalityGap = (bottom.formality - intent.targetFormality)
+            .abs();
         final avgFormalityGap = (topFormalityGap + bottomFormalityGap) / 2.0;
         if (avgFormalityGap <= 1.0) {
           score += 0.08;
@@ -346,12 +422,14 @@ class AiStylistService {
         }
 
         // Bonus if matches preferred tone
-        if (intent.preferredTone == 'netral' && (isNeutral(top.color) || isNeutral(bottom.color))) {
+        if (intent.preferredTone == 'netral' &&
+            (isNeutral(top.color) || isNeutral(bottom.color))) {
           score += 0.05;
         }
 
         // Bonus if prefer newest
-        if (intent.preferNewest && (tops.indexOf(top) <= 1 || bottoms.indexOf(bottom) <= 1)) {
+        if (intent.preferNewest &&
+            (tops.indexOf(top) <= 1 || bottoms.indexOf(bottom) <= 1)) {
           score += 0.12;
         }
 
@@ -402,7 +480,12 @@ class AiStylistService {
 
         combinations.add(
           StylistOutfitOption(
-            title: _generateOptionTitle(combinations.length + 1, intent.occasion ?? 'Kasual', top, bottom),
+            title: _generateOptionTitle(
+              combinations.length + 1,
+              intent.occasion ?? 'Kasual',
+              top,
+              bottom,
+            ),
             items: outfitItems,
             matchScore: normalizedScore,
             stylingReason: reason,
@@ -525,11 +608,14 @@ class AiStylistService {
     required int targetFormality,
   }) {
     final harmonyDesc = switch (harmony) {
-      ColorHarmony.netral => 'Harmoni warna netral yang bersih dan mudah dipadukan.',
+      ColorHarmony.netral =>
+        'Harmoni warna netral yang bersih dan mudah dipadukan.',
       ColorHarmony.analog => 'Kombinasi warna analog yang senada dan memberikan kesan harmonis lembut.',
-      ColorHarmony.komplementer => 'Paduan warna komplementer yang kontras berimbang dan menarik visual.',
+      ColorHarmony.komplementer =>
+        'Paduan warna komplementer yang kontras berimbang dan menarik visual.',
       ColorHarmony.triadic => 'Kombinasi dinamis yang seimbang dan segar.',
-      ColorHarmony.kontras => 'Sentuhan warna berani yang memberi daya tarik tersendiri.',
+      ColorHarmony.kontras =>
+        'Sentuhan warna berani yang memberi daya tarik tersendiri.',
     };
 
     final formalityGap = (top.formality - bottom.formality).abs();
@@ -597,4 +683,3 @@ class AiStylistService {
 
 /// Global singleton instance of AI Stylist Service.
 const aiStylistService = AiStylistService();
-

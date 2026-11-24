@@ -174,7 +174,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: palette.action.withValues(alpha: 0.12),
                   shape: BoxShape.circle,
                 ),
-                child: Icon(Icons.auto_awesome, color: palette.action, size: 18),
+                child: Icon(
+                  Icons.auto_awesome,
+                  color: palette.action,
+                  size: 18,
+                ),
               ),
               const SizedBox(width: 8),
               Expanded(
@@ -212,9 +216,7 @@ class _HomeScreenState extends State<HomeScreen> {
           InkWell(
             borderRadius: BorderRadius.circular(14),
             onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (_) => const AiStylistChatScreen(),
-              ),
+              MaterialPageRoute(builder: (_) => const AiStylistChatScreen()),
             ),
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 11),
@@ -230,10 +232,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       "Tanya AI: 'Outfit wisuda, ngampus, atau kondangan'...",
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: 12.5,
-                        color: palette.inkMuted,
-                      ),
+                      style: TextStyle(fontSize: 12.5, color: palette.inkMuted),
                     ),
                   ),
                   const SizedBox(width: 6),

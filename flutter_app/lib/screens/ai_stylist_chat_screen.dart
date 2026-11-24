@@ -47,8 +47,7 @@ class _AiStylistChatScreenState extends State<AiStylistChatScreen> {
     _messages.add(
       ChatMessage(
         isUser: false,
-        text:
-            'Halo! Aku AI Stylist pribadimu. Kamu bisa bebas menanyakan rekomendasi outfit untuk acara apa saja, preferensi warna, atau gaya tertentu (misalnya: wisuda teman, ngampus santai, meeting formal, hingga paduan warna netral). Ceritakan apa yang kamu butuhkan!',
+        text: 'Halo! Aku AI Stylist pribadimu. Kamu bisa bebas menanyakan rekomendasi outfit untuk acara apa saja, preferensi warna, atau gaya tertentu (misalnya: wisuda teman, ngampus santai, meeting formal, hingga paduan warna netral). Ceritakan apa yang kamu butuhkan!',
         timestamp: DateTime.now(),
       ),
     );
@@ -88,11 +87,7 @@ class _AiStylistChatScreenState extends State<AiStylistChatScreen> {
 
     setState(() {
       _messages.add(
-        ChatMessage(
-          isUser: true,
-          text: cleanQuery,
-          timestamp: DateTime.now(),
-        ),
+        ChatMessage(isUser: true, text: cleanQuery, timestamp: DateTime.now()),
       );
       _isThinking = true;
     });
@@ -123,8 +118,7 @@ class _AiStylistChatScreenState extends State<AiStylistChatScreen> {
         _messages.add(
           ChatMessage(
             isUser: false,
-            text:
-                'Maaf, terjadi kendala saat memproses permintaanmu. Coba sampaikan gayamu dengan kata kunci acara atau warna ya.',
+            text: 'Maaf, terjadi kendala saat memproses permintaanmu. Coba sampaikan gayamu dengan kata kunci acara atau warna ya.',
             timestamp: DateTime.now(),
           ),
         );
@@ -186,11 +180,7 @@ class _AiStylistChatScreenState extends State<AiStylistChatScreen> {
                 color: palette.action.withValues(alpha: 0.12),
                 shape: BoxShape.circle,
               ),
-              child: Icon(
-                Icons.auto_awesome,
-                color: palette.action,
-                size: 20,
-              ),
+              child: Icon(Icons.auto_awesome, color: palette.action, size: 20),
             ),
             const SizedBox(width: 10),
             Expanded(
@@ -218,10 +208,7 @@ class _AiStylistChatScreenState extends State<AiStylistChatScreen> {
                       const SizedBox(width: 5),
                       Text(
                         'Asisten Gaya Pribadi • Online',
-                        style: TextStyle(
-                          fontSize: 11,
-                          color: palette.inkMuted,
-                        ),
+                        style: TextStyle(fontSize: 11, color: palette.inkMuted),
                       ),
                     ],
                   ),
@@ -683,7 +670,11 @@ class _AiStylistChatScreenState extends State<AiStylistChatScreen> {
             width: double.infinity,
             height: 38,
             child: OutlinedButton.icon(
-              icon: Icon(Icons.favorite_border, size: 16, color: palette.action),
+              icon: Icon(
+                Icons.favorite_border,
+                size: 16,
+                color: palette.action,
+              ),
               label: Text(
                 'Simpan ke Favorit',
                 style: TextStyle(

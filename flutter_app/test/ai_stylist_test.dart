@@ -12,21 +12,27 @@ void main() {
     const service = AiStylistService();
 
     test('parses semi-formal wisuda query with navy color', () {
-      final intent = service.parseIntent('Rekomendasi pakaian ke wisuda teman warna navy');
+      final intent = service.parseIntent(
+        'Rekomendasi pakaian ke wisuda teman warna navy',
+      );
       expect(intent.occasion, 'Smart-Casual');
       expect(intent.targetFormality, 4);
       expect(intent.preferredColors, contains('Biru'));
     });
 
     test('parses formal interview query', () {
-      final intent = service.parseIntent('Baju untuk interview kerja di kantor');
+      final intent = service.parseIntent(
+        'Baju untuk interview kerja di kantor',
+      );
       expect(intent.occasion, 'Formal');
       expect(intent.targetFormality, 5);
       expect(intent.preferredCategories, contains('Tops'));
     });
 
     test('parses casual campus query with black t-shirt', () {
-      final intent = service.parseIntent('Outfit santai ngampus pakai kaos hitam');
+      final intent = service.parseIntent(
+        'Outfit santai ngampus pakai kaos hitam',
+      );
       expect(intent.occasion, 'Kasual');
       expect(intent.targetFormality, 2);
       expect(intent.preferredColors, contains('Hitam'));
@@ -150,63 +156,65 @@ void main() {
       ];
     });
 
-    testWidgets('HomeScreen renders clean AI Stylist card and opens chat on tap', (
-      WidgetTester tester,
-    ) async {
-      tester.view.physicalSize = const Size(640, 1000);
-      tester.view.devicePixelRatio = 1.0;
-      addTearDown(tester.view.reset);
+    testWidgets(
+      'HomeScreen renders clean AI Stylist card and opens chat on tap',
+      (WidgetTester tester) async {
+        tester.view.physicalSize = const Size(640, 1000);
+        tester.view.devicePixelRatio = 1.0;
+        addTearDown(tester.view.reset);
 
-      await tester.pumpWidget(
-        const MaterialApp(home: HomeScreen(showNav: false)),
-      );
-      await tester.pump();
+        await tester.pumpWidget(
+          const MaterialApp(home: HomeScreen(showNav: false)),
+        );
+        await tester.pump();
 
-      expect(find.text('AI Stylist GAYAKU'), findsOneWidget);
-      expect(find.text('TANYA GAYA'), findsOneWidget);
-      expect(
-        find.text("Tanya AI: 'Outfit wisuda, ngampus, atau kondangan'..."),
-        findsOneWidget,
-      );
+        expect(find.text('AI Stylist GAYAKU'), findsOneWidget);
+        expect(find.text('TANYA GAYA'), findsOneWidget);
+        expect(
+          find.text("Tanya AI: 'Outfit wisuda, ngampus, atau kondangan'..."),
+          findsOneWidget,
+        );
 
-      await tester.tap(
-        find.text("Tanya AI: 'Outfit wisuda, ngampus, atau kondangan'..."),
-      );
-      await tester.pumpAndSettle();
+        await tester.tap(
+          find.text("Tanya AI: 'Outfit wisuda, ngampus, atau kondangan'..."),
+        );
+        await tester.pumpAndSettle();
 
-      expect(find.byType(AiStylistChatScreen), findsOneWidget);
-    });
+        expect(find.byType(AiStylistChatScreen), findsOneWidget);
+      },
+    );
 
-    testWidgets('AiStylistChatScreen displays friendly opening guide and supports free text', (
-      WidgetTester tester,
-    ) async {
-      tester.view.physicalSize = const Size(640, 1000);
-      tester.view.devicePixelRatio = 1.0;
-      addTearDown(tester.view.reset);
+    testWidgets(
+      'AiStylistChatScreen displays friendly opening guide and supports free text',
+      (WidgetTester tester) async {
+        tester.view.physicalSize = const Size(640, 1000);
+        tester.view.devicePixelRatio = 1.0;
+        addTearDown(tester.view.reset);
 
-      await tester.pumpWidget(
-        const MaterialApp(home: AiStylistChatScreen()),
-      );
-      await tester.pump();
+        await tester.pumpWidget(const MaterialApp(home: AiStylistChatScreen()));
+        await tester.pump();
 
-      expect(find.text('AI Stylist GAYAKU'), findsOneWidget);
-      expect(
-        find.textContaining('Halo! Aku AI Stylist pribadimu'),
-        findsOneWidget,
-      );
-      expect(
-        find.textContaining('bebas menanyakan rekomendasi outfit untuk acara apa saja'),
-        findsOneWidget,
-      );
+        expect(find.text('AI Stylist GAYAKU'), findsOneWidget);
+        expect(
+          find.textContaining('Halo! Aku AI Stylist pribadimu'),
+          findsOneWidget,
+        );
+        expect(
+          find.textContaining(
+            'bebas menanyakan rekomendasi outfit untuk acara apa saja',
+          ),
+          findsOneWidget,
+        );
 
-      await tester.enterText(
-        find.byType(TextField),
-        'Mau outfit kasual ngampus',
-      );
-      await tester.tap(find.byIcon(Icons.arrow_upward_rounded));
-      await tester.pumpAndSettle();
+        await tester.enterText(
+          find.byType(TextField),
+          'Mau outfit kasual ngampus',
+        );
+        await tester.tap(find.byIcon(Icons.arrow_upward_rounded));
+        await tester.pumpAndSettle();
 
-      expect(find.text('Mau outfit kasual ngampus'), findsOneWidget);
-    });
+        expect(find.text('Mau outfit kasual ngampus'), findsOneWidget);
+      },
+    );
   });
 }
