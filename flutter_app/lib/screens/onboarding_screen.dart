@@ -50,8 +50,9 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     );
 
     // In widget tests, avoid infinite ticker repeat so pumpAndSettle completes.
-    final isTestEnvironment =
-        WidgetsBinding.instance.runtimeType.toString().contains('Test');
+    final isTestEnvironment = WidgetsBinding.instance.runtimeType
+        .toString()
+        .contains('Test');
     if (!isTestEnvironment) {
       _floatController.repeat(reverse: true);
       _pulseController.repeat();
@@ -79,9 +80,9 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     if (Navigator.of(context).canPop()) {
       Navigator.of(context).pop();
     } else {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (_) => const LoginScreen()),
-      );
+      Navigator.of(
+        context,
+      ).pushReplacement(MaterialPageRoute(builder: (_) => const LoginScreen()));
     }
   }
 
@@ -184,32 +185,28 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                     palette: palette,
                     stepBadge: 'Langkah 1',
                     title: 'Scan & Tambah Pakaian',
-                    description:
-                        'Tekan tombol Scan di navigasi bawah untuk foto atau unggah pakaian, lalu tentukan kategori, warna, dan formalitasnya.',
+                    description: 'Tekan tombol Scan di navigasi bawah untuk foto atau unggah pakaian, lalu tentukan kategori, warna, dan formalitasnya.',
                     visual: _buildScanVisual(palette),
                   ),
                   _buildSlide(
                     palette: palette,
                     stepBadge: 'Langkah 2',
                     title: 'Rekomendasi Padu Padan',
-                    description:
-                        'Buka detail pakaian di Wardrobe. Sistem otomatis mencocokkan harmoni warna & acara, cukup tekan Simpan Kombinasi.',
+                    description: 'Buka detail pakaian di Wardrobe. Sistem otomatis mencocokkan harmoni warna & acara, cukup tekan Simpan Kombinasi.',
                     visual: _buildMatchVisual(palette),
                   ),
                   _buildSlide(
                     palette: palette,
                     stepBadge: 'Langkah 3',
                     title: 'Favorit & Jadwal Mingguan',
-                    description:
-                        'Tandai kombinasi sebagai Favorit dan jadwalkan di Planner agar muncul otomatis di kartu Today\'s Look setiap hari.',
+                    description: 'Tandai kombinasi sebagai Favorit dan jadwalkan di Planner agar muncul otomatis di kartu Today\'s Look setiap hari.',
                     visual: _buildPlannerVisual(palette),
                   ),
                   _buildSlide(
                     palette: palette,
                     stepBadge: 'Langkah 4',
                     title: 'Alur Cepat Siap Pakai',
-                    description:
-                        'Tiga langkah mudah untuk penampilan rapi setiap hari tanpa bingung memilih pakaian.',
+                    description: 'Tiga langkah mudah untuk penampilan rapi setiap hari tanpa bingung memilih pakaian.',
                     visual: _buildQuickWorkflowVisual(palette),
                   ),
                 ],
@@ -272,10 +269,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                   const SizedBox(height: 8),
 
                   // Illustration Area with fixed balanced height
-                  SizedBox(
-                    height: 250,
-                    child: Center(child: visual),
-                  ),
+                  SizedBox(height: 250, child: Center(child: visual)),
                   const SizedBox(height: 24),
 
                   // Step Badge
@@ -461,10 +455,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                   decoration: BoxDecoration(
                     color: palette.sheet,
                     borderRadius: BorderRadius.circular(28),
-                    border: Border.all(
-                      color: palette.surfaceMuted,
-                      width: 1.2,
-                    ),
+                    border: Border.all(color: palette.surfaceMuted, width: 1.2),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black.withValues(alpha: 0.08),
@@ -517,8 +508,9 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                                 shape: BoxShape.circle,
                                 boxShadow: [
                                   BoxShadow(
-                                    color:
-                                        palette.action.withValues(alpha: 0.4),
+                                    color: palette.action.withValues(
+                                      alpha: 0.4,
+                                    ),
                                     blurRadius: 10,
                                     offset: const Offset(0, 3),
                                   ),
@@ -617,10 +609,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                   decoration: BoxDecoration(
                     color: palette.sheet,
                     borderRadius: AppRadius.panel,
-                    border: Border.all(
-                      color: palette.surfaceMuted,
-                      width: 1.2,
-                    ),
+                    border: Border.all(color: palette.surfaceMuted, width: 1.2),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black.withValues(alpha: 0.07),
@@ -801,10 +790,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                   decoration: BoxDecoration(
                     color: palette.sheet,
                     borderRadius: AppRadius.panel,
-                    border: Border.all(
-                      color: palette.surfaceMuted,
-                      width: 1.2,
-                    ),
+                    border: Border.all(color: palette.surfaceMuted, width: 1.2),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black.withValues(alpha: 0.07),
@@ -982,10 +968,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                   decoration: BoxDecoration(
                     color: palette.sheet,
                     borderRadius: AppRadius.panel,
-                    border: Border.all(
-                      color: palette.surfaceMuted,
-                      width: 1.2,
-                    ),
+                    border: Border.all(color: palette.surfaceMuted, width: 1.2),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black.withValues(alpha: 0.07),
@@ -1079,9 +1062,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
             : palette.sheet,
         borderRadius: AppRadius.pill,
         border: Border.all(
-          color: highlight
-              ? palette.accent
-              : palette.surfaceMuted,
+          color: highlight ? palette.accent : palette.surfaceMuted,
           width: 1,
         ),
         boxShadow: [
@@ -1181,10 +1162,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
               ),
               Text(
                 subtitle,
-                style: TextStyle(
-                  fontSize: 10.5,
-                  color: palette.inkMuted,
-                ),
+                style: TextStyle(fontSize: 10.5, color: palette.inkMuted),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),

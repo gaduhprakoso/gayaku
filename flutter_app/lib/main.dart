@@ -138,8 +138,8 @@ class GayakuApp extends StatelessWidget {
               home: authService.currentUser != null
                   ? const NavShell()
                   : (hasSeenOnboarding
-                      ? const LoginScreen()
-                      : const OnboardingScreen()),
+                        ? const LoginScreen()
+                        : const OnboardingScreen()),
             );
           },
         );

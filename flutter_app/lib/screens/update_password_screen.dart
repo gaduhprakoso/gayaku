@@ -61,9 +61,8 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
       );
     } on AuthException catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(e.message)),
-      );
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.message)));
     } catch (_) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
@@ -116,10 +115,7 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
                 const SizedBox(height: 8),
                 Text(
                   'Masukkan password baru untuk akun GayaKu kamu.',
-                  style: TextStyle(
-                    color: palette.inkMuted,
-                    fontSize: 13,
-                  ),
+                  style: TextStyle(color: palette.inkMuted, fontSize: 13),
                 ),
                 const SizedBox(height: 20),
                 TextField(
@@ -128,11 +124,19 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
                   style: GoogleFonts.inter(fontSize: 16, color: palette.ink),
                   decoration: InputDecoration(
                     hintText: 'Password baru',
-                    hintStyle: GoogleFonts.inter(fontSize: 16, color: palette.inkMuted),
-                    prefixIcon: Icon(Icons.lock_outline, color: palette.inkMuted),
+                    hintStyle: GoogleFonts.inter(
+                      fontSize: 16,
+                      color: palette.inkMuted,
+                    ),
+                    prefixIcon: Icon(
+                      Icons.lock_outline,
+                      color: palette.inkMuted,
+                    ),
                     suffixIcon: IconButton(
                       icon: Icon(
-                        _obscurePassword ? Icons.visibility_off : Icons.visibility,
+                        _obscurePassword
+                            ? Icons.visibility_off
+                            : Icons.visibility,
                         color: palette.inkMuted,
                       ),
                       onPressed: () =>
@@ -153,11 +157,16 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
                   style: GoogleFonts.inter(fontSize: 16, color: palette.ink),
                   decoration: InputDecoration(
                     hintText: 'Konfirmasi password baru',
-                    hintStyle: GoogleFonts.inter(fontSize: 16, color: palette.inkMuted),
+                    hintStyle: GoogleFonts.inter(
+                      fontSize: 16,
+                      color: palette.inkMuted,
+                    ),
                     prefixIcon: Icon(Icons.lock_reset, color: palette.inkMuted),
                     suffixIcon: IconButton(
                       icon: Icon(
-                        _obscureConfirm ? Icons.visibility_off : Icons.visibility,
+                        _obscureConfirm
+                            ? Icons.visibility_off
+                            : Icons.visibility,
                         color: palette.inkMuted,
                       ),
                       onPressed: () =>

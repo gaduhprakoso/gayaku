@@ -46,9 +46,8 @@ class _LoginScreenState extends State<LoginScreen> {
   void _navigateToHome() {
     if (!mounted || _navigatedToHome) return;
     _navigatedToHome = true;
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (_) => const NavShell()),
-    );
+    Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (_) => const NavShell()));
   }
 
   @override
@@ -95,7 +94,10 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  Future<void> _showForgotPasswordDialog(BuildContext context, dynamic palette) async {
+  Future<void> _showForgotPasswordDialog(
+    BuildContext context,
+    dynamic palette,
+  ) async {
     final resetEmailController = TextEditingController();
     bool isSubmitting = false;
 
@@ -122,10 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   Text(
                     "Masukkan email akunmu. Kami akan mengirimkan tautan untuk mereset password ke email tersebut.",
-                    style: TextStyle(
-                      color: palette.inkMuted,
-                      fontSize: 13,
-                    ),
+                    style: TextStyle(color: palette.inkMuted, fontSize: 13),
                   ),
                   const SizedBox(height: 16),
                   TextField(
@@ -135,7 +134,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     decoration: InputDecoration(
                       hintText: 'Email',
                       hintStyle: TextStyle(color: palette.inkMuted),
-                      prefixIcon: Icon(Icons.email_outlined, color: palette.inkMuted),
+                      prefixIcon: Icon(
+                        Icons.email_outlined,
+                        color: palette.inkMuted,
+                      ),
                       filled: true,
                       fillColor: palette.canvas.withValues(alpha: 0.5),
                       border: OutlineInputBorder(
@@ -148,8 +150,13 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               actions: [
                 TextButton(
-                  onPressed: isSubmitting ? null : () => Navigator.of(dialogContext).pop(),
-                  child: Text("Batal", style: TextStyle(color: palette.inkMuted)),
+                  onPressed: isSubmitting
+                      ? null
+                      : () => Navigator.of(dialogContext).pop(),
+                  child: Text(
+                    "Batal",
+                    style: TextStyle(color: palette.inkMuted),
+                  ),
                 ),
                 ElevatedButton(
                   onPressed: isSubmitting
@@ -158,7 +165,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           final email = resetEmailController.text.trim();
                           if (email.isEmpty) {
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Email tidak boleh kosong.')),
+                              const SnackBar(
+                                content: Text('Email tidak boleh kosong.'),
+                              ),
                             );
                             return;
                           }
@@ -180,14 +189,16 @@ class _LoginScreenState extends State<LoginScreen> {
                           } on AuthException catch (e) {
                             setDialogState(() => isSubmitting = false);
                             if (!dialogContext.mounted) return;
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text(e.message)),
-                            );
+                            ScaffoldMessenger.of(
+                              context,
+                            ).showSnackBar(SnackBar(content: Text(e.message)));
                           } catch (e) {
                             setDialogState(() => isSubmitting = false);
                             if (!dialogContext.mounted) return;
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Terjadi kesalahan. Coba lagi.')),
+                              const SnackBar(
+                                content: Text('Terjadi kesalahan. Coba lagi.'),
+                              ),
                             );
                           }
                         },
@@ -388,7 +399,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       Align(
                         alignment: Alignment.center,
                         child: TextButton(
-                          onPressed: () => _showForgotPasswordDialog(context, palette),
+                          onPressed: () =>
+                              _showForgotPasswordDialog(context, palette),
                           child: Text(
                             "Forgot Password?",
                             style: TextStyle(

@@ -527,9 +527,7 @@ void main() {
       findsOneWidget,
     );
     expect(
-      find.text(
-        'Atasan (Tops) dan Bawahan (Bottoms) Wajib Terisi',
-      ),
+      find.text('Atasan (Tops) dan Bawahan (Bottoms) Wajib Terisi'),
       findsOneWidget,
     );
   });
@@ -556,9 +554,7 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(
-      find.text(
-        'Pastikan atasan (Tops) dan bawahan (Bottoms) terisi sebelum menyimpan',
-      ),
+      find.text('Atasan (Tops) dan Bawahan (Bottoms) Wajib Terisi'),
       findsNothing,
     );
     expect(find.text('Belum dibuat'), findsNWidgets(3));
